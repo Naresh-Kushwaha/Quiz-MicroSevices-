@@ -1,0 +1,33 @@
+server:
+  port: 8222
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+
+  #This configuration snippet enables Spring Cloud Gateway to dynamically route
+  #requests to services registered in Eureka Server (or another discovery service)
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: user-service
+          uri: lb:http://USER-SERVICE
+          predicates:
+            - Path=/api/v1/users/**
+
+        - id: quiz-service
+          uri: lb:http://QUIZ-SERVICE
+          predicates:
+            - Path=/api/v1/quiz/**
+
+        - id: question-service
+          uri: lb:http://QUESTION-SERVICE
+          predicates:
+             - Path=/api/v1/question/**
+
