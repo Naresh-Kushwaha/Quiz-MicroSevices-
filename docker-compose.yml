@@ -11,6 +11,13 @@ services:
     networks:
       - microservices-net
 
+  zipkin:
+    image: openzipkin/zipkin
+    container_name: zipkin
+    ports:
+      - "9411:9411"
+    networks:
+      - microservices-net
 
   kafka:
     image: confluentinc/cp-kafka:latest

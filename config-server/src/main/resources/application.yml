@@ -2,11 +2,16 @@ server:
   port: 8888
 spring:
   profiles:
-    active: native
+    active: default
+
   application:
       name: config-server
   cloud:
     config:
       server:
-        native:
-          search-locations: classpath:/configurations
+        git:
+          uri: https://github.com/Naresh-Kushwaha/Quiz-MicroService-Config
+
+#        native:
+#          search-locations: classpath:/configurations
+
